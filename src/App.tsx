@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { memo, Suspense } from 'react'
+import { HashRouter as Router } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import routes from '@/router'
 
-export default App;
+import Header from '@/components/header'
+import Footer from '@/components/footer'
+
+import { Spin } from 'antd'
+export default memo(function App() {
+    return (
+        <Router>
+            <Header />
+            <div className='main'>
+                <Suspense
+                    fallback={
+                        <div className='loading-wrapper'>
+                            <Spin size='large' />
+                        </div>
+                    }
+                >
+                    {
+                        renderRoutes(routes)
+                    }
+                </Suspense>
+            </div>
+            <Footer />
+        </Router>
+    )
+})
