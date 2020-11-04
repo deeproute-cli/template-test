@@ -38,3 +38,13 @@
     - 建议这样使用，每个page有自己对应的模块，比如pageA对应service目录下的一个pageA模块，pageA默认引入之前写好的request这个模块
 - utils 放置一些通用方法工具
 
+
+#### 2020.11.04
+
+- 增加store
+    - 引入redux react-redux redux-thunk
+    - 常量放置store/constant中
+    - 每个action都放置store/actionCreator中
+        - 建议统一命名规范
+    - 后期如果数据多的话可以引入immutable.js来管理数据
+    - 如果模块多的话，可以每个模块中都有自己的store，然后通过合并
